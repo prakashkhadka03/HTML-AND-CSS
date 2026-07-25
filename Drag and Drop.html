@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop html</title>
+</head>    
+<body>
+    <h1>Drag and Drop in html</h1>
+    <style>
+#div1 {
+  width: 350px;
+  height: 400px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+</style>
+<script>
+function dragstartHandler(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function dragoverHandler(ev) {
+  ev.preventDefault();
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<h1>Drag and Drop API</h1>
+
+<p>Drag the NAGI image into the rectangle:</p>
+
+<div id="div1" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div>
+<br>
+<img id="img" src="Images/𝗡𝗔𝗚𝗜.jpg" draggable="true" ondragstart="dragstartHandler(event)" width="350" height="400">
+
+</body>
+</html>
