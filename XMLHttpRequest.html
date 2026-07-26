@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest Example</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let xhr = new XMLHttpRequest(); // Step 1: Create a new XMLHttpRequest object
+
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/users", true); // Step 2: Open a GET request to the API
+            
+            console.log("Request sent to API..."); // Step 3: Log request initiation
+
+            // Step 4: Define what happens when the request state changes
+            xhr.onreadystatechange = function() {
+                console.log("ReadyState:", xhr.readyState); // Log readyState changes (optional)
+
+                // Step 5: Check if request is completed (readyState === 4)
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log("Success! Data received."); // Step 6: Log success message
+
+                        let data = JSON.parse(xhr.responseText); // Step 7: Convert JSON text to JavaScript object
+                        console.log("JSON Data:", data); // Step 8: Log the JSON response
+
+                        let userList = document.getElementById("user-list"); // Step 9: Get the user list container
+
+                        // Step 10: Loop through the users and add them to the UI
+                        data.forEach(user => {
+                            let li = document.createElement("li");
+                            li.textContent = `${user.name} - ${user.email}`;
+                            userList.appendChild(li);
+                        });
+                    } else {
+                        console.error(`Error: HTTP Status ${xhr.status}`); // Step 11: Handle HTTP errors
+                        document.getElementById("user-list").innerHTML = `<p style="color:red;">Failed to load data. Error ${xhr.status}</p>`;
+                    }
+                }
+            };
+
+            xhr.onerror = function() {
+                console.error("Network error occurred!"); // Step 12: Handle network errors
+                document.getElementById("user-list").innerHTML = `<p style="color:red;">Network Error. Please check your connection.</p>`;
+            };
+
+            xhr.send(); // Step 13: Send the request to the API
+        });
+    </script>
+</head>
+<body>
+    <h2>Users List (Fetched via XMLHttpRequest)</h2>
+    <ul id="user-list"></ul>
+</body>
+</html>

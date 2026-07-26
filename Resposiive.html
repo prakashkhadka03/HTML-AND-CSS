@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device, initial-scale=1.0">
+    <title>responsive box model</title>
+    <link rel="stylesheet" href="responsive box model.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Responsive web page using box model</h1>
+      </div>
+      <div class="content">
+        <p>This is a responsive web page thatdenonstrate the css box model.</p>
+      </div>
+      <div class="box">Box 1</div>
+      <div class="box">Box 2</div>
+      <div class="box">Box 3</div>
+    </div>
+    <div class="footer">
+      <p>Copyright &copy; 2024 Responsive Box Model. All rights reserved.</p>
+    </div>
+</div>
+
+  </body>
+</html>
+
+<responsive .css
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--light-bg);
+    padding: 20px;
+}
+
+.container {
+    width: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: beige;
+    padding: 20px;
+    border: 2px solid #ddd;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background-color: #6299eb;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+.content {
+    margin:0 20px ;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #f4f4f4;
+    border-radius: 5px;
+   
+}
+
+.box {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    background: #e2e2e2;
+    border-radius: 5px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+} 
+User registration .html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <link rel="stylesheet" href="form1.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>User Registration</h2>
+
+    <form id="regForm">
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name">
+            <div class="error" id="nameError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email">
+            <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password">
+            <div class="error" id="passwordError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword">
+            <div class="error" id="confirmPasswordError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" id="age">
+            <div class="error" id="ageError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" id="dob">
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="phone">
+        </div>
+
+        <div class="form-group">
+            <label>Website</label>
+            <input type="url" id="website">
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <div class="inline">
+                <input type="radio" name="gender"> Male
+                <input type="radio" name="gender"> Female
+                <input type="radio" name="gender"> Other
+            </div>
+            <div class="error" id="genderError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Skills</label>
+            <div class="inline">
+                <input type="checkbox" name="skill"> HTML
+                <input type="checkbox" name="skill"> CSS
+                <input type="checkbox" name="skill"> JavaScript
+            </div>
+            <div class="error" id="skillError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Country</label>
+            <select id="country">
+                <option value="">Select</option>
+                <option>Nepal</option>
+                <option>India</option>
+                <option>USA</option>
+                <option>UK</option>
+            </select>
+            <div class="error" id="countryError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+            <textarea id="address"></textarea>
+            <div class="error" id="addressError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Upload File</label>
+            <input type="file" id="file">
+            <div class="error" id="fileError"></div>
+        </div>
+
+        <div class="btn-group">
+            <input type="submit" value="Register" class="btn submit">
+            <input type="reset" value="Reset" class="btn reset">
+        </div>
+
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+ User registration.js
+
+document.getElementById("regForm").addEventListener("submit", function(e) {
+
+    e.preventDefault(); // Prevent default submission
+    let valid = true;
+
+    // Clear previous errors
+    document.querySelectorAll(".error").forEach(el => el.innerText = "");
+
+    // Values
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let age = document.getElementById("age").value;
+    let gender = document.querySelector('input[name="gender"]:checked');
+    let skill = document.querySelectorAll('input[name="skill"]:checked');
+    let country = document.getElementById("country").value;
+    let address = document.getElementById("address").value.trim();
+    let file = document.getElementById("file").value;
+
+    // Validation
+    if(name === "") {
+        document.getElementById("nameError").innerText = "Name required";
+        valid = false;
+    }
+
+    // ...rest of your validation code...
+});
+
